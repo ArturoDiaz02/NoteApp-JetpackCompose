@@ -3,7 +3,6 @@ package com.example.noteapp.feature_note
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.navigation.NavType
@@ -11,14 +10,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.noteapp.feature_note.view.add_edit_note.AddEditNoteScreen
 import com.example.noteapp.feature_note.view.notes.NotesScreen
 import com.example.noteapp.feature_note.view.util.Screen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             Surface(
                 color = MaterialTheme.colors.background
@@ -51,7 +53,11 @@ class MainActivity : ComponentActivity() {
                             },
                         )
                     ) {
-                        //val color = it.arguments?.getInt("noteColor") ?: -1
+                        val color = it.arguments?.getInt("noteColor") ?: -1
+                        AddEditNoteScreen(
+                            navController = navController,
+                            noteColor = color
+                        )
 
                     }
                 }

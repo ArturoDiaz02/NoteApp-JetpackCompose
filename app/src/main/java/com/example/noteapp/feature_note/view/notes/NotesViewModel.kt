@@ -18,7 +18,6 @@ import javax.inject.Inject
 @HiltViewModel
 class NotesViewModel @Inject constructor(
     private val noteUseCase: NoteUseCase
-
 ) : ViewModel() {
 
     private val _state = mutableStateOf(NotesState())
